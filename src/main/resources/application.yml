@@ -6,3 +6,7 @@ amazon:
 dynamodb:
   endpoint:
     url: http://localhost:8000/
+
+jwt:
+  secret: ${JWT_SECRET:insertansecrethere}
+  expiration-ms: 3600000

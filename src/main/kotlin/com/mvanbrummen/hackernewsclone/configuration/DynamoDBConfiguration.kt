@@ -24,7 +24,7 @@ class DynamoDBConfiguration(
     }
 
     @Bean
-    fun dynemoDBMapper(amazonDynamoDB: AmazonDynamoDB): DynamoDBMapper {
+    fun dynamoDBMapper(amazonDynamoDB: AmazonDynamoDB): DynamoDBMapper {
         return DynamoDBMapper(amazonDynamoDB)
     }
 }

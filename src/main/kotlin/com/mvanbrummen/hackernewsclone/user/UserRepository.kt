@@ -39,9 +39,7 @@ class UserRepository(
             UserEntity(
                 username = username,
                 passwordHash = passwordHash,
-                createdDate = LocalDate.now().toString(),
-                pk = "USERNAME#$username",
-                sk = "USERNAME#$username",
+                createdDate = LocalDate.now().toString()
             )
         )
     }
