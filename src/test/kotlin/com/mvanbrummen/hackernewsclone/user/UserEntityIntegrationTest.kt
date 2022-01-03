@@ -3,31 +3,21 @@ package com.mvanbrummen.hackernewsclone.user
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput
+import com.mvanbrummen.hackernewsclone.LocalDBCreationExtension
 import org.joda.time.LocalDate
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.testcontainers.containers.GenericContainer
-import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.junit.jupiter.Testcontainers
+
 
 @SpringBootTest
-@Testcontainers
+@ExtendWith(LocalDBCreationExtension::class)
 internal class UserEntityIntegrationTest {
     @Autowired
     lateinit var dynamoDb: AmazonDynamoDB
     lateinit var dynamoDBMapper: DynamoDBMapper
-
-    companion object {
-        val DYNAMODB_PORT = 8000
-
-        @Container
-        val dynamodbContainer = GenericContainer<Nothing>("amazon/dynamodb-local:latest").apply {
-            withCommand("-jar DynamoDBLocal.jar -sharedDb -dbPath .")
-            withExposedPorts(DYNAMODB_PORT)
-        }
-    }
 
     @BeforeEach
     internal fun setUp() {
@@ -50,8 +40,6 @@ internal class UserEntityIntegrationTest {
         )
 
         dynamoDBMapper.save(userEntity)
-
-
     }
 
 }
