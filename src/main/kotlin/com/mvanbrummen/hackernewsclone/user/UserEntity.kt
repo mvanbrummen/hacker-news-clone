@@ -17,6 +17,9 @@ class UserEntity(
     @DynamoDBAttribute(attributeName = "created_date")
     var createdDate: String? = null,
 
+    @DynamoDBAttribute(attributeName = "locked")
+    var locked: Boolean = false,
+
     @DynamoDBHashKey(attributeName = "pk")
     var pk: String = "USERNAME#" + username,
 
