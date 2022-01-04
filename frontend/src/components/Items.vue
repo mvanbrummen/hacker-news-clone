@@ -25,6 +25,11 @@
         >
       </div>
     </div>
+
+    <div class="row">
+      <span class="moreLink title"><a v-bind:href="'#'">More</a></span>
+    </div>
+    <footer></footer>
   </div>
 </template>
 
@@ -73,6 +78,10 @@ a {
 .title a {
   word-break: break-word;
 }
+a:visited {
+  color: #828282;
+  text-decoration: none;
+}
 .comhead {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 8pt;
@@ -83,5 +92,19 @@ a {
   font-size: 7pt;
   color: #828282;
   margin-left: 15px;
+}
+
+.moreLink {
+  margin-left: 15px;
+  margin-top: 30px;
+}
+
+footer {
+  height: 30px;
+  margin-top: 20px;
+  width: 80vw;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: #ff6600;
 }
 </style>
