@@ -12,4 +12,13 @@ interface HackerNewsClient {
     @RequestMapping(method = [RequestMethod.GET], value = ["/item/{id}.json"])
     fun getItem(@PathVariable id: Long): Item?
 
+    @RequestMapping(method = [RequestMethod.GET], value = ["/topstories.json"])
+    fun getTopStories(): List<Long>
+
+    @RequestMapping(method = [RequestMethod.GET], value = ["/newstories.json"])
+    fun getNewStories(): List<Long>
+
+    @RequestMapping(method = [RequestMethod.GET], value = ["/beststories.json"])
+    fun getBestStories(): List<Long>
+
 }

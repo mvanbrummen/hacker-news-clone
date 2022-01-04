@@ -17,4 +17,19 @@ class HackerNewsClientIntegrationTest {
 
         assertThat(result).isNotNull
     }
+
+    @Test
+    internal fun `should return top stories wnen valid`() {
+        assertThat(hackerNewsClient.getTopStories()).isNotNull
+    }
+
+    @Test
+    internal fun `should return new stories wnen valid`() {
+        assertThat(hackerNewsClient.getNewStories()).isNotNull
+    }
+
+    @Test
+    internal fun `should return best stories wnen valid`() {
+        assertThat(hackerNewsClient.getBestStories()).isNotNull
+    }
 }
