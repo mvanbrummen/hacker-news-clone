@@ -1,5 +1,14 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <p>
+      Getting some practice with Kotlin and VueJS by building a HackerNews
+      clone.
+    </p>
   </div>
 </template>
+
+<style scoped>
+.about {
+  margin: 10px 0 0 10px;
+}
+</style>

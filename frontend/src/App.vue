@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <router-link to="/" class="logo">HackerNews</router-link> |
-    <router-link to="/about" class="nav-link">About</router-link>
+    <router-link to="/about" class="nav-link">about</router-link>
   </div>
   <router-view />
 </template>
@@ -10,7 +10,6 @@
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
 
   font-family: Verdana, Geneva, sans-serif;
   font-size: 10pt;
