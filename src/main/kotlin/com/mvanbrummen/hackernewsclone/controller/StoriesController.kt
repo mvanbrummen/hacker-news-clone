@@ -11,7 +11,7 @@ class StoriesController(
     private val hackerNewsService: HackerNewsService
 ) {
     private val DEFAULT_PAGE_SIZE = 30
-    private val DEFAULT_PAGE = 1
+    private val DEFAULT_PAGE = 0
 
     @GetMapping("/topstories")
     fun getTopStories(@RequestParam page: Int?): List<Item?> {
