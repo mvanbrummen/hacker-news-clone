@@ -15,8 +15,8 @@ export default createStore({
     },
   },
   actions: {
-    async fetchTopStories({ commit }) {
-      const data = await axios.get(`${BASE_URL}/topstories`);
+    async fetchTopStories({ commit }, page = 0) {
+      const data = await axios.get(`${BASE_URL}/topstories?page=${page}`);
       commit("setTopStories", data.data);
     },
   },

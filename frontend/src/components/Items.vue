@@ -6,7 +6,7 @@
         <a v-bind:href="item.url"> {{ item.title }}</a>
         <span class="sitestr comhead"
           ><a v-bind:href="item.url" class="title">
-            ({{ getDomainForUrl(item.url) }})</a
+            {{ getDomainForUrl(item.url) }}</a
           ></span
         >
       </div>
@@ -27,7 +27,11 @@
     </div>
 
     <div class="row">
-      <span class="moreLink title"><a v-bind:href="'#'">More</a></span>
+      <span class="moreLink title"
+        ><router-link :to="{ path: '/', query: { page: page + 1 } }"
+          >More</router-link
+        ></span
+      >
     </div>
     <footer></footer>
   </div>
@@ -41,17 +45,15 @@ export default {
       type: Array,
       required: false,
     },
+    page: Number,
   },
   methods: {
     getDomainForUrl(url) {
       if (url === undefined || url === null) {
-        return url;
+        return "";
       }
       const u = new URL(url);
-
-      console.log(u.hostname);
-
-      return u.hostname;
+      return `(${u.hostname})`;
     },
   },
 };

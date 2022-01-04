@@ -1,5 +1,5 @@
 <template>
-  <items :itemList="this.$store.state.topStories"></items>
+  <items :itemList="topStories" :page="page"></items>
 </template>
 
 <script>
@@ -15,8 +15,21 @@ export default {
   methods: {
     ...mapActions(["fetchTopStories"]),
   },
+  computed: {
+    topStories() {
+      return this.$store.state.topStories;
+    },
+    page() {
+      return this.$route.query.page ? parseInt(this.$route.query.page) : 0;
+    },
+  },
+  watch: {
+    $route() {
+      this.$store.dispatch("fetchTopStories", this.page);
+    },
+  },
   beforeCreate() {
-    this.$store.dispatch("fetchTopStories");
+    this.$store.dispatch("fetchTopStories", this.page);
   },
 };
 </script>
