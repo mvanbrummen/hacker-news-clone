@@ -15,7 +15,7 @@
   font-size: 10pt;
   color: #828282;
   background-color: #f6f6ef;
-  height: 100vh;
+  height: 1300px;
   width: 80vw;
   margin: auto;
 }

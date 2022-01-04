@@ -5,7 +5,9 @@
         <span class="rank title">{{ idx + 1 }}.</span>
         <a v-bind:href="item.url"> {{ item.title }}</a>
         <span class="sitestr comhead"
-          ><a v-bind:href="item.url" class="title"> ({{ item.url }})</a></span
+          ><a v-bind:href="item.url" class="title">
+            ({{ getDomainForUrl(item.url) }})</a
+          ></span
         >
       </div>
 
@@ -33,6 +35,18 @@ export default {
     itemList: {
       type: Array,
       required: false,
+    },
+  },
+  methods: {
+    getDomainForUrl(url) {
+      if (url === undefined || url === null) {
+        return url;
+      }
+      const u = new URL(url);
+
+      console.log(u.hostname);
+
+      return u.hostname;
     },
   },
 };
