@@ -18,19 +18,15 @@ class HackerNewsService(
             .drop(page * size)
             .take(size)
 
-        val items = mutableListOf<Item?>()
-
         return runBlocking {
             val result = topStoryIds.map {
                 async(Dispatchers.IO) {
                     println("Calling item http ${Thread.currentThread().id}")
-                    items.add(hackerNewsClient.getItem(it))
+                    hackerNewsClient.getItem(it)
                 }
             }
 
             result.awaitAll()
-
-            items
         }
     }
 
