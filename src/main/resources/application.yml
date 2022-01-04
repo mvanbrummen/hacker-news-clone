@@ -1,12 +1,3 @@
-amazon:
-  access:
-    key: key
-    secretkey: secret-key
-  region: local
-dynamodb:
-  endpoint:
-    url: http://localhost:8000/
-
-jwt:
-  secret: ${JWT_SECRET:insertansecrethere}
-  expiration-ms: 3600000
+hackernews:
+  api:
+    base-url: https://hacker-news.firebaseio.com/v0
