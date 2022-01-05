@@ -14,10 +14,10 @@
       <div class="row subtext">
         <span class="score">{{ item.score }} points</span> by
         <span class="user"
-          ><a v-bind:href="'#'">{{ item.by }}</a></span
-        >
+          ><a v-bind:href="'#'">{{ item.by }}</a>
+        </span>
         <span class="age">
-          <a v-bind:href="'#'"> {{ item.time }} ago</a></span
+          <a v-bind:href="'#'"> {{ timeSinceDate(item.time) }}</a></span
         >
         |
         <span class="comments"
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import { timeSince } from "@/util/dateUtil.js";
+
 export default {
   name: "Items",
   props: {
@@ -54,6 +56,10 @@ export default {
       }
       const u = new URL(url);
       return `(${u.hostname})`;
+    },
+    timeSinceDate(dateSeconds) {
+      const d = timeSince(dateSeconds * 1000);
+      return " " + d;
     },
   },
 };
