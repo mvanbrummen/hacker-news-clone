@@ -10,6 +10,7 @@ export default createStore({
     topStories: [],
     newStories: [],
     story: {},
+    comments: [],
   },
   mutations: {
     setTopStories(state, topStories) {
@@ -20,6 +21,9 @@ export default createStore({
     },
     setStory(state, story) {
       state.story = story;
+    },
+    setComments(state, comments) {
+      state.comments = comments;
     },
   },
   actions: {
@@ -34,6 +38,12 @@ export default createStore({
     async fetchStory({ commit }, id) {
       const data = await axios.get(`${BASE_URL}/stories/${id}`);
       commit("setStory", data.data);
+    },
+    async fetchComments({ commit }, id) {
+      console.log("making comments request");
+      const data = await axios.get(`${BASE_URL}/stories/${id}/comments`);
+      console.log(data.data);
+      commit("setComments", data.data);
     },
   },
   modules: {},

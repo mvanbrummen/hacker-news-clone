@@ -1,6 +1,13 @@
 <template>
   <div class="container u-pull-left">
-    <Item :item="item" :rank="1"></Item>
+    <Item :item="item" :rank="1" class="item"></Item>
+
+    <Comment
+      v-for="(comment, idx) in comments"
+      :comment="comment"
+      :key="idx"
+      class="comments"
+    ></Comment>
 
     <footer></footer>
   </div>
@@ -8,15 +15,17 @@
 
 <script>
 import Item from "@/components/Item.vue";
+import Comment from "@/components/Comment.vue";
 
 export default {
   name: "StoryDetail",
-  components: { Item },
+  components: { Item, Comment },
   props: {
     item: {
       type: Object,
       required: true,
     },
+    comments: Array,
   },
 };
 </script>
@@ -51,5 +60,11 @@ a {
 a:visited {
   color: #828282;
   text-decoration: none;
+}
+.item {
+  margin-bottom: 20px;
+}
+.comments {
+  margin-left: 10px;
 }
 </style>
