@@ -25,7 +25,7 @@ export default {
   },
   watch: {
     $route() {
-      this.$store.dispatch("fetchTopStories", this.page);
+      this.fetchTopStories(this.page);
     },
   },
   beforeCreate() {

@@ -20,4 +20,11 @@ internal class StoriesControllerIntegrationTest {
             .exchange()
             .expectBody()
     }
+
+    @Test
+    internal fun `should return response when newstories requested`() {
+        webTestClient.get().uri("/v1/newstories")
+            .exchange()
+            .expectBody()
+    }
 }
