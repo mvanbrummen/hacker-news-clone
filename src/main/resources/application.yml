@@ -1,3 +1,7 @@
 hackernews:
   api:
     base-url: https://hacker-news.firebaseio.com/v0
+
+spring:
+  jackson:
+    default-property-inclusion: non_null

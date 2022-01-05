@@ -1,6 +1,7 @@
 <template>
   <div id="nav">
     <router-link to="/" class="logo">HackerNews</router-link> |
+    <router-link to="/new" class="nav-link">new</router-link> |
     <router-link to="/about" class="nav-link">about</router-link>
   </div>
   <router-view />
