@@ -1,19 +1,7 @@
 <template>
   <div class="container u-pull-left">
-    <Item
-      v-for="(item, idx) in itemList"
-      :item="item"
-      :key="idx"
-      :rank="idx + 1"
-    ></Item>
+    <Item :item="item" :rank="1"></Item>
 
-    <div class="row">
-      <span class="moreLink title"
-        ><router-link :to="{ path: '/', query: { page: page + 1 } }"
-          >More</router-link
-        ></span
-      >
-    </div>
     <footer></footer>
   </div>
 </template>
@@ -22,14 +10,13 @@
 import Item from "@/components/Item.vue";
 
 export default {
-  name: "Items",
+  name: "StoryDetail",
   components: { Item },
   props: {
-    itemList: {
-      type: Array,
-      required: false,
+    item: {
+      type: Object,
+      required: true,
     },
-    page: Number,
   },
 };
 </script>
@@ -45,11 +32,6 @@ export default {
   font-size: 10pt;
   color: #828282;
 }
-.moreLink {
-  margin-left: 15px;
-  margin-top: 30px;
-}
-
 footer {
   height: 30px;
   margin-top: 20px;

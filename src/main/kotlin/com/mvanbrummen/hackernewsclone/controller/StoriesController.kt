@@ -22,4 +22,8 @@ class StoriesController(
     fun getNewStories(@RequestParam page: Int?): List<Item?> {
         return hackerNewsService.getNewPosts(page ?: DEFAULT_PAGE, DEFAULT_PAGE_SIZE)
     }
+
+    @GetMapping("/stories/{id}")
+    fun getNewStories(@PathVariable id: Long): Item? = hackerNewsService.getPost(id)
+
 }

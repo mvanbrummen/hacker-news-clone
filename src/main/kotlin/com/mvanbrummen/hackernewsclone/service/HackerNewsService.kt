@@ -16,6 +16,10 @@ class HackerNewsService(
 ) {
     private val logger: Logger = LoggerFactory.getLogger(HackerNewsService::class.java)
 
+    fun getPost(id: Long): Item? {
+        return hackerNewsClient.getItem(id)
+    }
+
     fun getTopPosts(page: Int, size: Int): List<Item?> {
         val topStoryIds = hackerNewsClient.getTopStories()
         return getPagedItems(topStoryIds, page, size)
