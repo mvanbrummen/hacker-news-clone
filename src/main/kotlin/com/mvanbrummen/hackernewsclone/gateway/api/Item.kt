@@ -9,7 +9,7 @@ data class Item(
     val descendants: Long?,
     val score: Int?,
     val title: String?,
-    val kids: List<Int> = emptyList(),
+    val kids: List<Long> = emptyList(),
     val url: String?,
     val parent: Int?
 )
