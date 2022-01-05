@@ -1,7 +1,8 @@
 <template>
   <div id="nav">
-    <router-link to="/" class="logo">HackerNews</router-link> |
-    <router-link to="/new" class="nav-link">new</router-link> |
+    <img src="./assets/y18.gif" />
+    <router-link to="/" class="logo">HackerNews</router-link>
+    | <router-link to="/new" class="nav-link">new</router-link> |
     <router-link to="/about" class="nav-link">about</router-link>
   </div>
   <router-view />
@@ -24,7 +25,6 @@
 #nav {
   padding: 2px;
   background-color: #ff6600;
-  height: 30px;
 }
 
 #nav a {
@@ -39,6 +39,16 @@
   font-size: 16px;
   font-weight: bold;
   color: #222222;
+}
+
+img {
+  height: 18px;
+  width: 18px;
+  border: 1px white solid;
+  position: relative;
+  top: 50%;
+  transform: translateY(15%);
+  margin-right: 5px;
 }
 
 #nav .nav-link.router-link-exact-active {
