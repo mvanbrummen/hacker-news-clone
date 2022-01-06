@@ -1,5 +1,5 @@
 <template>
-  <div class="comment-section">
+  <div class="comment-section" v-bind:style="{ marginLeft: depth * 10 + 'px' }">
     <div class="row hnUser">
       <span
         >{{ comment.comment.by }}
@@ -8,6 +8,15 @@
     </div>
     <div class="row comment">
       <span v-html="comment.comment.text"> </span>
+    </div>
+
+    <div v-if="comment.children && comment.children.length">
+      <Comment
+        v-for="(childComment, idx) in comment.children"
+        :comment="childComment"
+        :key="idx"
+        :depth="depth + 1"
+      ></Comment>
     </div>
   </div>
 </template>
@@ -19,6 +28,11 @@ export default {
   name: "Comment",
   props: {
     comment: Object,
+    depth: {
+      type: Number,
+      required: false,
+      default: 1,
+    },
   },
   methods: {
     timeSinceDate(dateSeconds) {
