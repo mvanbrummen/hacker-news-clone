@@ -4,19 +4,31 @@
       <span
         >{{ comment.comment.by }}
         {{ timeSinceDate(comment.comment.time) }}</span
-      ><a href="javascript:void(0)"> [-]</a>
+      ><a href="javascript:void(0)" v-on:click="toggleHideComment">
+        {{
+          hideComment
+            ? ` [${
+                comment.children && comment.children.length
+                  ? comment.children.length + " more"
+                  : "+"
+              }]`
+            : " [-]"
+        }}</a
+      >
     </div>
-    <div class="row comment">
-      <span v-html="comment.comment.text"> </span>
-    </div>
+    <div class="children-section" v-show="!hideComment">
+      <div class="row comment">
+        <span v-html="comment.comment.text"> </span>
+      </div>
 
-    <div v-if="comment.children && comment.children.length">
-      <Comment
-        v-for="(childComment, idx) in comment.children"
-        :comment="childComment"
-        :key="idx"
-        :depth="depth + 1"
-      ></Comment>
+      <div v-if="comment.children && comment.children.length">
+        <Comment
+          v-for="(childComment, idx) in comment.children"
+          :comment="childComment"
+          :key="idx"
+          :depth="depth + 1"
+        ></Comment>
+      </div>
     </div>
   </div>
 </template>
@@ -26,6 +38,11 @@ import { timeSince } from "@/util/dateUtil.js";
 
 export default {
   name: "Comment",
+  data() {
+    return {
+      hideComment: false,
+    };
+  },
   props: {
     comment: Object,
     depth: {
@@ -38,6 +55,9 @@ export default {
     timeSinceDate(dateSeconds) {
       const d = timeSince(dateSeconds * 1000);
       return " " + d;
+    },
+    toggleHideComment() {
+      this.hideComment = !this.hideComment;
     },
   },
 };
