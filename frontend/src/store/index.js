@@ -11,6 +11,7 @@ export default createStore({
     newStories: [],
     story: {},
     comments: [],
+    loadingComments: false,
   },
   mutations: {
     setTopStories(state, topStories) {
@@ -24,6 +25,9 @@ export default createStore({
     },
     setComments(state, comments) {
       state.comments = comments;
+    },
+    setLoadingComments(state, loadingComments) {
+      state.loadingComments = loadingComments;
     },
   },
   actions: {
@@ -40,9 +44,11 @@ export default createStore({
       commit("setStory", data.data);
     },
     async fetchComments({ commit }, id) {
+      commit("setLoadingComments", true);
       console.log("making comments request");
       const data = await axios.get(`${BASE_URL}/stories/${id}/comments`);
       console.log(data.data);
+      commit("setLoadingComments", false);
       commit("setComments", data.data);
     },
   },

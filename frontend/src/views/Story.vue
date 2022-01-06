@@ -1,5 +1,8 @@
 <template>
   <StoryDetail :item="story" :comments="comments"></StoryDetail>
+  <div class="row" v-if="isLoadingComments">
+    <p>Loading comments...</p>
+  </div>
 </template>
 
 <script>
@@ -19,6 +22,9 @@ export default {
     },
     comments() {
       return this.$store.state.comments;
+    },
+    isLoadingComments() {
+      return this.$store.state.loadingComments;
     },
   },
   watch: {
