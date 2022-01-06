@@ -15,9 +15,7 @@ import org.springframework.stereotype.Service
 class HackerNewsService(
     private val hackerNewsClient: HackerNewsClient
 ) {
-    private val logger: Logger = LoggerFactory.getLogger(HackerNewsService::class.java)
-
-    private val COMMENT_PAGE_SIZE = 10
+    private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
     fun getPost(id: Long): Item? {
         return hackerNewsClient.getItem(id)
@@ -27,14 +25,14 @@ class HackerNewsService(
         val item = hackerNewsClient.getItem(id)
 
         val parentCommentIds = item?.kids
-            ?.drop(page * COMMENT_PAGE_SIZE)
-            ?.take(COMMENT_PAGE_SIZE)
+            ?.drop(page * Companion.COMMENT_PAGE_SIZE)
+            ?.take(Companion.COMMENT_PAGE_SIZE)
 
         return getComments(parentCommentIds ?: emptyList())
     }
 
-    private fun getComments(ids: List<Long>) : List<Comment> {
-       return getItemsParallel(ids)
+    private fun getComments(ids: List<Long>): List<Comment> {
+        return getItemsParallel(ids)
             .filterNotNull()
             .map {
                 Comment(
@@ -74,6 +72,7 @@ class HackerNewsService(
         }
     }
 
-
-
+    companion object {
+        const val COMMENT_PAGE_SIZE = 10
+    }
 }
